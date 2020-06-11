@@ -1,0 +1,235 @@
+\documentclass[a4paper, 12pt]{report}
+
+\usepackage[top=36pt,bottom=36pt,left=48pt,right=48pt,marginparwidth=110pt,marginparsep=-80pt]{geometry}
+\usepackage{marginnote}
+\usepackage{enumitem}
+\usepackage{relsize}
+\usepackage{setspace}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\renewcommand{\thesection}{\arabic{section}}
+
+\def\defeq{\stackrel{\mathrm{def}}{=}}
+
+\theoremstyle{definition}
+\newtheorem{define}{Definition}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{doublespace}
+    \hspace{0pt}
+    \vfill
+    \centering
+    \Huge
+    \textbf{Notes on Analysis}
+
+    \normalsize
+    Jonathan E. Fuzaro Alencar
+    \vfill
+    \hspace{0pt}
+    \end{doublespace}
+\end{titlepage}
+
+\pagebreak
+
+\chapter{Preliminaries}
+\label{ch:preliminaries}
+
+\marginpar{
+\begin{center}
+\textbf{Greek Alphabet}
+\end{center}
+\begin{tabular}{lll}
+alpha    &  \(\alpha\)         &  \(A\)\\
+beta     &  \(\beta\)          &  \(B\)\\
+gamma    &  \(\gamma\)         &  \(\Gamma\)\\
+delta    &  \(\delta\)         &  \(\Delta\)\\
+epsilon  &  \(\epsilon\)       &  \(E\)\\
+zeta     &  \(\zeta\)          &  \(Z\)\\
+eta      &  \(\eta\)           &  \(H\)\\
+iota     &  \(\iota\)          &  \(I\)\\
+kappa    &  \(\kappa\)         &  \(K\)\\
+lambda   &  \(\lambda\)        &  \(\Lambda\)\\
+mu       &  \(\mu\)            &  \(M\)\\
+nu       &  \(\nu\)            &  \(N\)\\
+xi       &  \(\xi\)            &  \(\Xi\)\\
+omicron  &  \(o\)              &  \(O\)\\
+pi       &  \(\pi\)            &  \(\Pi\)\\
+rho      &  \(\rho\)           &  \(P\)\\
+sigma    &  \(\sigma\)         &  \(\Sigma\)\\
+tau      &  \(\tau\)           &  \(T\)\\
+upsilon  &  \(\upsilon\)       &  \(\Upsilon\)\\
+phi      &  \(\phi,\varphi\)   &  \(\Phi\)\\
+chi      &  \(\chi\)           &  \(X\)\\
+psi      &  \(\psi\)           &  \(\Psi\)\\
+omega    &  \(\omega\)         &  \(\Omega\)
+\end{tabular}
+}
+
+\begin{doublespace}
+
+\section{Sums \& Products}
+\label{sec:sum_and_product}
+
+\textbf{Sum Notation}: \(\mathlarger{\sum}\limits_{i=1}^n a_i
+= a_1 + a_2 + \dots + a_n\);\\
+\
+\indent E.g.: \(\sum\limits_{i=1}^3 \sum\limits_{j=2}^4 (i + j)
+= (\sum\limits_{j=2}^4 1+j) + (\sum\limits_{j=2}^4 2+j)
++ (\sum\limits_{j=2}^4 3+j)\)\\
+\
+\textbf{Product Notation}: \(\mathlarger{\prod}\limits_{i=1}^n a_i
+= a_1 \cdot a_2 \cdots a_n\);\\
+\
+\indent E.g.: \(\prod\limits_{i=1}^n i = n!\)
+
+\section{Logic}
+\label{sec:logic}
+
+\begin{tabular}{lcl}
+\textbf{Universal Quantifier}: & \(\forall\) & ``for all''\\
+
+\textbf{Existential Quantifier}: & \(\exists\) & ``there exists''\\
+
+\textbf{Uniqueness Quantifier}: & \(\exists!\) & ``there exists one and only
+one''\\
+
+\textbf{Material Implication}: & \(\implies\) & ``implies''\\
+
+\textbf{Material Equivalence}: & \(\iff \) & ``if and only if (iff)''\\
+
+\textbf{Logical Complement}: & \(\lnot\) & ``not''\\
+
+\textbf{Logical Conjuction}: & \(\land\) & ``and''\\
+
+\textbf{Logical Disjunction}: & \(\lor\) & ``or''\\
+
+\textbf{Exclusive Disjucntion}: & \(\oplus\) & ``exclusive or (xor)''
+\end{tabular}
+
+\pagebreak
+
+\section{Set Theory}
+\label{sec:set_theory}
+
+\subsection{Notation}
+
+\begin{tabular}{lcl}
+
+\textbf{Set Relations}:
+& \(\{a, b\}\) &
+``the set containing the elements \(a\) and \(b\)''\\
+
+& \(\{a \mid p(a)\}\) &
+``the set of \(a\) such that \(p(a)\) is true''\\
+
+& \(\in\) & ``is an element of'';
+e.g. \(3 \in \{1, 2, 3\}\)\\
+
+& \(\notin\) & ``is not an element of'';
+e.g. \(4 \notin \{1, 2, 3\}\)\\
+
+& \(=\) & ``equals'';
+\((A = B) \iff \forall x \mid (x \in A \iff x \in B)\)\\
+
+& \(\neq\) & ``does not equal''; \(A \neq B \iff \lnot (A = B)\)\\
+
+& \(\subseteq\) & ``is a subset of'';
+\((A \subseteq B) \iff \forall x \mid (x \in A \implies x \in B)\)\\
+
+& \(\subset, \subsetneq\) & ``is a proper subset of'';
+\((A \subset B) \iff (A \subseteq B \land A \neq B)\)\\
+
+& \(\supseteq\) & ``is a superset of'';
+\(A \supseteq B \iff B \subseteq A\)\\
+
+& \(\supset, \supsetneq\) & ``is a proper superset of'';
+\(A \supset B \iff (B \supseteq A \land B \neq A)\)\\
+
+\textbf{Set Operations:}
+& \(\overline{A}\) & ``the complement of A'';
+\(\overline{A} := \{x \mid x \notin A\}\)\\
+
+& \(\cap\) & ``intersect'';
+\(A \cap B := \{x \mid x \in A \land x \in B\}\)\\
+
+& \(\cup\) & ``union'';
+\(A \cup B := \{x \mid x \in A \lor x \in B\}\)\\
+
+& \(\times\) & ``cross'';
+\(A \times B := \{(x, y) \mid x \in A \land y \in B\}\)\\
+
+& \(-, \setminus \) & ``complement, slash'';
+\(A - B := \{x \mid x \in A \land x \notin B\}\)\\
+
+\end{tabular}
+
+\subsection{Indexed Operations}
+
+If \(S_i\) is a collection of sets indexed by \(i \in I\) then,
+
+\textbf{Indexed Intersetion:} \(\mathlarger{\bigcap}_{i \in I}S_i
+:= S_{I_1} \cap S_{I_2} \cap ...
+= \{x \mid \forall i \in I; x \in S_i\}\)
+
+\
+
+\textbf{Indexed Union:} \(\mathlarger{\bigcup}_{i \in I}S_i
+:= S_{I_1} \cup S_{I_2} \cup ...
+:= \{x \mid \exists i \in I; x \in S_i\}\)
+
+
+\subsection{Common Sets}
+\begin{tabular}{lll}
+
+\(\varnothing\) & the empty set & \(\{\}\) \\
+
+\(\mathbb{N}\) & the \textit{natural numbers} & \(\{1, 2, 3, ...\}\)\\
+
+\(\mathbb{Z}\) & the \textit{integers} & \(\{..., -1, 0, 1, ...\}\)\\
+
+\(\mathbb{Q}\) & the \textit{rational numbers} &
+\(\{p/q \mid p,q \in \mathbb{Z} \land q \neq 0\}\)\\
+
+\(\mathbb{R}\) & the \textit{real numbers} & infinite decimals\\
+
+\(\mathbb{C}\) & the \textit{complex numbers} &
+\(\{i = \sqrt{-1}, a + ib \mid a, b \in \mathbb{R}\}\)\\
+\end{tabular}
+
+\pagebreak
+
+\section{Functions}
+
+\begin{singlespace}
+\begin{define}[\textbf{Function as a rule}]
+    A \textit{function} consists of two sets, called the \textit{domain} and the
+    \textit{codomain}, and a rule that associates to any element in the domain
+    exactly one element in the codomain.
+\end{define}
+
+\begin{define}[\textbf{Set theoretic function}]
+    A \textit{function} \(f : X \rightarrow Y\) is a subset
+    \(\Gamma_f \subseteq X \times Y\) having the property that for every
+    \(x \in X\), there exists a unique \(y \in Y\) such that
+    \((x,y) \in \Gamma_f\). That is,
+    \(\Gamma_f = \{(x, y) \mid (\forall x \in X) (\exists! y \in Y)\}\).
+\end{define}
+
+\begin{define}[\textbf{Image}]
+    The set of all values of \(f\) is called its \textit{image}:
+    \(y\) is an element of the image of a function \(f: X \rightarrow Y\) if
+    there exists an \(x \in X\) such that \(f(x) = y\).
+    The image of \(f: X \rightarrow Y\) is written \(f(X)\);
+    it is a subset of Y.
+    That is, the image of \(f\) is
+    \(\{f(x) \mid x \in X\} = f(X)\).
+\end{define}
+    
+\end{singlespace}
+
+\end{doublespace}
+\end{document}
