@@ -1,0 +1,41 @@
+
+\documentclass[a4paper, 12pt]{report}
+
+\usepackage[top=36pt,bottom=36pt,left=48pt,right=48pt,marginparwidth=110pt,marginparsep=-80pt]{geometry}
+\usepackage{marginnote}
+\usepackage{enumitem}
+\usepackage{relsize}
+\usepackage{setspace}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{commath}
+\usepackage{subfiles}
+
+% theorem, definition, etc. styles
+\newtheorem{thm}{Theorem}[chapter]
+\newtheorem{cor}[thm]{Corrollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem*{fact}{Fact}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+
+% commands
+\newcommand*{\N}{\mathbb{N}} % natural numbers
+\newcommand*{\Z}{\mathbb{Z}} % integers
+% \newcommand*{\gcd}[2]{\mathrm{gcd}(#1,#2)} % greatest common divisor
+
+\begin{document}
+
+\chapter{The Integers}
+\label{ch:intgs}
+
+\subfile{sections/1_the_integers.tex}
+
+\chapter{Modular Arithmetic}
+\label{ch:mod_arth}
+
+\subfile{sections/2_modular_arithmetic.tex}
+
+\end{document}
